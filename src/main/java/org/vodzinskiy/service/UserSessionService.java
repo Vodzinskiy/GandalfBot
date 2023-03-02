@@ -2,7 +2,6 @@ package org.vodzinskiy.service;
 
 import org.springframework.stereotype.Component;
 import org.vodzinskiy.model.UserSession;
-
 import java.util.HashMap;
 import java.util.Map;
 

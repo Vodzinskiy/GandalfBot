@@ -13,14 +13,20 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class GandalfBot extends TelegramLongPollingBot {
 
+    @Value("${bot.token}")
+    private String botToken;
+
+    @Value("${bot.username}")
+    private String botUsername;
+
     @Override
     public String getBotUsername() {
-        return null;
+        return botUsername;
     }
 
     @Override
     public String getBotToken() {
-        return null;
+        return botToken;
     }
 
     @Override

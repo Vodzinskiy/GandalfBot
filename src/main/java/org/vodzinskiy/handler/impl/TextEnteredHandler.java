@@ -10,15 +10,15 @@ import org.vodzinskiy.service.UserService;
 import org.vodzinskiy.service.UserSessionService;
 
 @Component
-public class StartCommandHandler extends UserRequestHandler {
-
-    private static final String command = "/start";
+public class TextEnteredHandler extends UserRequestHandler {
 
     private final TelegramService telegramService;
+
     private final UserSessionService userSessionService;
     private final UserService userService;
 
-    public StartCommandHandler(TelegramService telegramService, UserSessionService userSessionService, UserService userService) {
+
+    public TextEnteredHandler(TelegramService telegramService, UserSessionService userSessionService, UserService userService) {
         this.telegramService = telegramService;
         this.userSessionService = userSessionService;
         this.userService = userService;
@@ -26,13 +26,14 @@ public class StartCommandHandler extends UserRequestHandler {
 
     @Override
     public boolean isApplicable(UserRequest userRequest) {
-        return isCommand(userRequest.getUpdate(), command);
+        return isTextMessage(userRequest.getUpdate())
+                && ConversationState.WAITING_FOR_TEXT.equals(userRequest.getUserSession().getState());
     }
 
     @Override
     public void handle(UserRequest request) {
         if (userService.findByUserName("@" + request.getUpdate().getMessage().getFrom().getUserName()) != null) {
-            telegramService.sendMessage(request.getChatId(), "\uD83D\uDC4B");
+            telegramService.sendMessage(request.getChatId(), "Answer for question: " + request.getUpdate().getMessage().getText());
         } else {
             telegramService.sendMessage(request.getChatId(), "Sorry,\nyou are not on the whitelist");
         }
@@ -44,6 +45,6 @@ public class StartCommandHandler extends UserRequestHandler {
 
     @Override
     public boolean isGlobal() {
-        return true;
+        return false;
     }
 }

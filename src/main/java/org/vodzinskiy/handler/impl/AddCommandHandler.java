@@ -3,11 +3,9 @@ package org.vodzinskiy.handler.impl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.vodzinskiy.handler.UserRequestHandler;
-import org.vodzinskiy.model.User;
 import org.vodzinskiy.model.UserRequest;
 import org.vodzinskiy.model.UserSession;
 import org.vodzinskiy.service.TelegramService;
-import org.vodzinskiy.service.UserService;
 import org.vodzinskiy.service.UserSessionService;
 import org.vodzinskiy.enums.ConversationState;
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.vodzinskiy.model.User;
 import org.vodzinskiy.repository.UserRepository;
 
-import java.util.List;
 
 @Service
 public class UserService {
@@ -27,9 +26,5 @@ public class UserService {
 
     public User findByUserName(String user) {
         return userRepository.findByUserName(user);
-    }
-
-    public List<User> findAll() {
-        return userRepository.findAll();
     }
 }

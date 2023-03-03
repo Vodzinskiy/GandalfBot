@@ -2,8 +2,11 @@ package org.vodzinskiy.handler.impl;
 
 import org.springframework.stereotype.Component;
 import org.vodzinskiy.handler.UserRequestHandler;
+import org.vodzinskiy.model.User;
 import org.vodzinskiy.model.UserRequest;
 import org.vodzinskiy.service.TelegramService;
+
+import java.util.List;
 
 @Component
 public class StartCommandHandler extends UserRequestHandler {

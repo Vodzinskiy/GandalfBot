@@ -19,6 +19,7 @@ public class RemoveCommandHandler extends UserRequestHandler {
     private final TelegramService telegramService;
     private final UserSessionService userSessionService;
 
+
     public RemoveCommandHandler(TelegramService telegramService, UserSessionService userSessionService) {
         this.telegramService = telegramService;
         this.userSessionService = userSessionService;

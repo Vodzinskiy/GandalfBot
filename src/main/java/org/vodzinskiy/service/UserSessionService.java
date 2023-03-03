@@ -2,13 +2,15 @@ package org.vodzinskiy.service;
 
 import org.springframework.stereotype.Component;
 import org.vodzinskiy.model.UserSession;
+
 import java.util.HashMap;
 import java.util.Map;
+
 
 @Component
 public class UserSessionService {
 
-    private Map<Long, UserSession> userSessionMap = new HashMap<>();
+    private final Map<Long, UserSession> userSessionMap = new HashMap<>();
 
     public UserSession getSession(Long chatId) {
         return userSessionMap.getOrDefault(chatId, UserSession
@@ -19,9 +21,5 @@ public class UserSessionService {
 
     public UserSession saveSession(Long chatId, UserSession session) {
         return userSessionMap.put(chatId, session);
-    }
-
-    public Map<Long, UserSession> getUserSessionMap() {
-        return userSessionMap;
     }
 }

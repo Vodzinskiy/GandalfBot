@@ -8,7 +8,10 @@ public class User {
     @Id
     private String id;
     private String userName;
-    private long userId;
+
+    public User(String userName) {
+        this.userName = userName;
+    }
 
     public String getId() {
         return id;
@@ -24,5 +27,13 @@ public class User {
 
     public void setUserName(String username) {
         userName = username;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
     }
 }

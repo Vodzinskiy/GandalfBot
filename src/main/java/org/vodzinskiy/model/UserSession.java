@@ -8,7 +8,8 @@ import org.vodzinskiy.enums.ConversationState;
 @Builder
 public class UserSession {
     private Long chatId;
-    private ConversationState state;
-    private String city;
+    private String userName;
     private String text;
+
+    private ConversationState state;
 }

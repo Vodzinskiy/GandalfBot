@@ -9,5 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class UserRequest {
     private Update update;
     private Long chatId;
+    private String userName;
     private UserSession userSession;
 }

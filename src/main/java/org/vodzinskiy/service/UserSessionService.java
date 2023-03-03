@@ -20,4 +20,8 @@ public class UserSessionService {
     public UserSession saveSession(Long chatId, UserSession session) {
         return userSessionMap.put(chatId, session);
     }
+
+    public Map<Long, UserSession> getUserSessionMap() {
+        return userSessionMap;
+    }
 }

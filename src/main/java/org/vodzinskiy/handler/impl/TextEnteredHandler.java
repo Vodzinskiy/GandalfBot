@@ -2,7 +2,6 @@ package org.vodzinskiy.handler.impl;
 
 import org.springframework.stereotype.Component;
 import org.vodzinskiy.handler.UserRequestHandler;
-import org.vodzinskiy.enums.ConversationState;
 import org.vodzinskiy.model.UserRequest;
 import org.vodzinskiy.model.UserSession;
 import org.vodzinskiy.service.ChatGPTService;
@@ -30,7 +29,7 @@ public class TextEnteredHandler extends UserRequestHandler {
     @Override
     public boolean isApplicable(UserRequest userRequest) {
         return isTextMessage(userRequest.getUpdate())
-                && ConversationState.WAITING_FOR_TEXT.equals(userRequest.getUserSession().getState());
+                && userRequest.getUserSession().getState() == null;
     }
 
     @Override
@@ -43,7 +42,7 @@ public class TextEnteredHandler extends UserRequestHandler {
         }
 
         UserSession session = request.getUserSession();
-        session.setState(ConversationState.WAITING_FOR_TEXT);
+        session.setState(null);
         userSessionService.saveSession(request.getChatId(), session);
     }
 

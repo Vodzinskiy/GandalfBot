@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.Objects;
 
 @Service
 public class ChatGPTService {
@@ -70,7 +71,7 @@ public class ChatGPTService {
         ResponseEntity<String> responseEntity = restTemplate.
                 postForEntity(chatGptUrl, requestEntity, String.class);
 
-        JSONObject responseJson = new JSONObject(responseEntity.getBody());
+        JSONObject responseJson = new JSONObject(Objects.requireNonNull(responseEntity.getBody()));
         JSONArray choices = (JSONArray) responseJson.get(CHOICES);
 
         JSONObject firstChoice = (JSONObject) choices.get(0);

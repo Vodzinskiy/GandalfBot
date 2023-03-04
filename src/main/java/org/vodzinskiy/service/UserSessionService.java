@@ -19,7 +19,7 @@ public class UserSessionService {
                 .build());
     }
 
-    public UserSession saveSession(Long chatId, UserSession session) {
-        return userSessionMap.put(chatId, session);
+    public void saveSession(Long chatId, UserSession session) {
+        userSessionMap.put(chatId, session);
     }
 }

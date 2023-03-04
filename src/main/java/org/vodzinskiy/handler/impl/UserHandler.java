@@ -50,7 +50,7 @@ public class UserHandler extends UserRequestHandler {
         }
 
         UserSession session = request.getUserSession();
-        session.setState(ConversationState.WAITING_FOR_TEXT);
+        session.setState(null);
         userSessionService.saveSession(request.getChatId(), session);
     }
 

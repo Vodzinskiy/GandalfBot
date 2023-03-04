@@ -1,7 +1,6 @@
 package org.vodzinskiy.handler.impl;
 
 import org.springframework.stereotype.Component;
-import org.vodzinskiy.enums.ConversationState;
 import org.vodzinskiy.handler.UserRequestHandler;
 import org.vodzinskiy.model.UserRequest;
 import org.vodzinskiy.model.UserSession;
@@ -38,7 +37,7 @@ public class StartCommandHandler extends UserRequestHandler {
         }
 
         UserSession session = request.getUserSession();
-        session.setState(ConversationState.WAITING_FOR_TEXT);
+        session.setState(null);
         userSessionService.saveSession(request.getChatId(), session);
     }
 

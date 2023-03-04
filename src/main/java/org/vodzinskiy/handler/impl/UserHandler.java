@@ -1,8 +1,8 @@
 package org.vodzinskiy.handler.impl;
 
 import org.springframework.stereotype.Component;
-import org.vodzinskiy.enums.ConversationState;
 import org.vodzinskiy.handler.UserRequestHandler;
+import org.vodzinskiy.enums.ConversationState;
 import org.vodzinskiy.model.User;
 import org.vodzinskiy.model.UserRequest;
 import org.vodzinskiy.model.UserSession;

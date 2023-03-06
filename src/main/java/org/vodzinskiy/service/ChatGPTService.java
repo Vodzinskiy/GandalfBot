@@ -33,19 +33,15 @@ public class ChatGPTService {
     String apiToken;
     @Value("${bot.text.max-tokens}")
     Integer maxTokens;
-    @Value(("${api.url.completions}"))
+    @Value(value = "${api.url.completions}")
     String urlCompletions;
 
 
-
-    public String askChatGPTText(String msg){
-
+    public String askChatGPTText(String msg) {
         RestTemplate restTemplate = new RestTemplate();
-
         HttpHeaders headers = setHeaders();
 
         JSONArray messages = new JSONArray();
-
         JSONObject sys = new JSONObject();
         sys.put("role", "system");
         sys.put("content", "You are a chatGPT");
@@ -76,7 +72,6 @@ public class ChatGPTService {
 
         JSONObject firstChoice = (JSONObject) choices.get(0);
         JSONObject message = (JSONObject) firstChoice.get("message");
-
         return String.valueOf(message.get(CONTENT));
     }
 

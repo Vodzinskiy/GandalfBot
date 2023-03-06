@@ -37,7 +37,7 @@ public class UserHandler extends UserRequestHandler {
                 telegramService.sendMessage(request.getChatId(), "User added:\n  UserName: "
                         + request.getUpdate().getMessage().getText());
             } catch (Exception e) {
-                telegramService.sendMessage(request.getChatId(), "Error");
+                telegramService.sendMessage(request.getChatId(), "User not found");
             }
         } else {
             try {
@@ -45,7 +45,7 @@ public class UserHandler extends UserRequestHandler {
                 telegramService.sendMessage(request.getChatId(), "User deleted:\n  UserName: "
                         + request.getUpdate().getMessage().getText());
             } catch (Exception e) {
-                telegramService.sendMessage(request.getChatId(), "Error");
+                telegramService.sendMessage(request.getChatId(), "User not found");
             }
         }
 

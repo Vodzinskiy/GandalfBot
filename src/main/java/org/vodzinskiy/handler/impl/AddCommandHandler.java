@@ -9,10 +9,12 @@ import org.vodzinskiy.service.TelegramService;
 import org.vodzinskiy.service.UserSessionService;
 import org.vodzinskiy.enums.ConversationState;
 
+import java.util.Objects;
+
 @Component
 public class AddCommandHandler extends UserRequestHandler {
-    @Value("${admin.id}")
-    private long adminId;
+    @Value("${admin}")
+    private String admin;
 
     private static final String command = "/add";
 
@@ -32,7 +34,7 @@ public class AddCommandHandler extends UserRequestHandler {
 
     @Override
     public void handle(UserRequest request) {
-        if (request.getUpdate().getMessage().getChatId() == adminId) {
+        if (Objects.equals(request.getUpdate().getMessage().getFrom().getUserName(), admin)) {
             telegramService.sendMessage(request.getChatId(), "Enter Username:");
             String user = request.getUpdate().getMessage().getText();
             UserSession session = request.getUserSession();

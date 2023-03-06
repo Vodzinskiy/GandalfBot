@@ -26,7 +26,7 @@ public class TelegramService {
                 .builder()
                 .text(text)
                 .chatId(chatId.toString())
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.MARKDOWN)
                 .build();
         execute(sendMessage);
     }

@@ -33,23 +33,26 @@ public class ChatGPTService {
     String apiToken;
     @Value("${bot.text.max-tokens}")
     Integer maxTokens;
-    @Value(("${api.url.completions}"))
+    @Value(value = "${api.url.completions}")
     String urlCompletions;
+    JSONArray messages;
+    private int count = 0;
 
-
-
-    public String askChatGPTText(String msg){
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = setHeaders();
-
-        JSONArray messages = new JSONArray();
-
+    public ChatGPTService() {
+        this.messages = new JSONArray();
         JSONObject sys = new JSONObject();
         sys.put("role", "system");
         sys.put("content", "You are a chatGPT");
         messages.put(sys);
+    }
+
+    public String askChatGPTText(String msg) {
+        System.out.println(messages);
+        if (count > 100) {
+            clear();
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = setHeaders();
 
         JSONObject userMessages = new JSONObject();
         userMessages.put("role", "user");
@@ -76,8 +79,16 @@ public class ChatGPTService {
 
         JSONObject firstChoice = (JSONObject) choices.get(0);
         JSONObject message = (JSONObject) firstChoice.get("message");
-
+        count += 1;
         return String.valueOf(message.get(CONTENT));
+    }
+
+    public void clear() {
+        this.messages = new JSONArray();
+        JSONObject sys = new JSONObject();
+        sys.put("role", "system");
+        sys.put("content", "You are a chatGPT");
+        messages.put(sys);
     }
 
     private HttpHeaders setHeaders() {
